@@ -1,0 +1,12 @@
+aries#aries.png#
+touro#touro.png#
+gemeos#gemeos.png#
+cancer#cancer.png#
+leao#leao.png#
+virgem#virgem.png#
+libra#libra.png#
+escorpiao#escorpiao.png#
+sagitario#sagitario.png#
+capricornio#capricornio.png#
+aquario#aquario.png#
+peixes#peixes.png#

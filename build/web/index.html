@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Trabalho de LP3</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <div class="container-xl p-3 my-3 bg-primary text-white">
+            <h1 style="text-align: center;">Horoscopo do dia</h1>
+            <p></p>
+        </div>
+        <div class="container p-3 my-3 border">
+            <form action="horoscopo.jsp" method="GET">
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                     <input type="email" class="form-control" id="email" placeholder="Insira seu e-mail" name="email">
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Senha:</label>
+                     <input type="password" class="form-control" id="pwd" placeholder="Insira sua senha" name="senha">
+                     <input type="hidden" name="dataNasc" value=""/>
+                </div>
+                <button type="submit" data-toggle="tooltip" data-placement="right" title="Realizar autenticacao no sistema" class="btn btn-primary">Autenticar</button>
+        </form>
+        </div>      
+        <div class="container p-3 my-3 bg-primary text-white">
+            <b>Membros do Grupo:</b>
+            <br>
+            Nome: Leonardo Custodio dos Santos RA: 0261810790
+        </div>
+
+        
+        <script>
+            $(document).ready(function(){
+              $('[data-toggle="tooltip"]').tooltip();   
+            });
+        </script>
+    </body>
+</html>
