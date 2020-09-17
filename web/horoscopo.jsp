@@ -83,7 +83,7 @@
             <form action="horoscopo.jsp" method="GET">
                 <div class="form-group">
                     <label for="dataNasc">Informe a Data de Nascimento:</label>
-                     <input type="date" class="form-control" id="date" required name="dataNasc" value="">
+                     <input type="date" class="form-control" id="date" required name="dataNasc">
                 </div>
                 <button type="submit" data-toggle="tooltip" data-placement="right" title="Consultar Horoscopo Diario" class="btn btn-primary">Consultar</button>
         </form>
@@ -94,9 +94,8 @@
             <br>
             Nome: Leonardo Custodio dos Santos RA: 0261810790
         </div>
-        <script>
-            var dateControl = document.querySelector('input[type="date"]');
-            dateControl.value = '2020-04-21'
-        </script>
+        
     </body>
+    
+
 </html>
