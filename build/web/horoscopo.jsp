@@ -82,6 +82,7 @@
             email = request.getParameter("email");
             senha = request.getParameter("senha");
             usuario = new Usuario(email,senha);
+            html = "";
          }catch(Exception e)
          {
              
