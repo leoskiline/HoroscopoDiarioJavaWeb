@@ -4,6 +4,9 @@
     Author     : Leonardo
 --%>
 
+<%@page import="java.util.Locale"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.io.RandomAccessFile"%>
 <%@page import="java.time.LocalDate"%>
 <%@page import="java.util.Date"%>
 <%@page import="util.Usuario"%>
@@ -12,8 +15,14 @@
     String email = "";
     String senha = "";
     LocalDate dataNasc = LocalDate.now();
-    String mensagem = "";
+    String html = "";
+    String signoslinha[];
+    String signosquebrado[];
+    String todossignos[];
+    String imgsignos[];
+    String horoscopo_diario[];
     Usuario usuario;
+    Locale l = new Locale("pt","BR");
     public boolean validarEmail(String email,String senha)
     {
         String senhainvertida = "";
@@ -21,6 +30,12 @@
         senhainvertida = senhainvertida.substring(0, senhainvertida.indexOf("@"));
         senhainvertida = new StringBuilder(senhainvertida).reverse().toString();
         return email.contains("@") && email.length() > 4 && senha.equals(senhainvertida);
+    }
+    public String signo(int Dia,int Mes)
+    {
+        String Signo = "";
+        
+        return Signo;
     }
 %>
 
@@ -32,11 +47,37 @@
             senha = usuario.getSenha();
             dataNasc = LocalDate.parse(request.getParameter("dataNasc"));
             usuario.setDataNasc(dataNasc);
-            mensagem = "Data Escolhida: "+dataNasc.toString();
+            signoslinha = new String[12];
+            signosquebrado = new String[3];
+            todossignos = new String[12];
+            imgsignos = new String[12];
+            horoscopo_diario = new String[12];
+            request.getServletContext().getRealPath("");
+            RandomAccessFile arq = new RandomAccessFile(request.getServletContext().getRealPath("")+"horoscopo.txt","r");
+            ArrayList<String> linhas = new ArrayList();
+            String linha = arq.readLine();
+            linhas.add(linha);
+            int i = 0,j=0;
+            while(linha != null && i < 12)
+            {
+                signoslinha = linha.split("\n");
+                signosquebrado = signoslinha[0].split("#");
+                todossignos[i] = signosquebrado[0];
+                imgsignos[i] = signosquebrado[1];
+                horoscopo_diario[i] = signosquebrado[2];
+                linha = arq.readLine();
+                linhas.add(linha);
+                i++;
+            }
+            int k = 0;
+            
+            arq.close();
          }catch(Exception e)
          {
              
          }
+         int indice = 0;
+         html = "<img src='"+imgsignos[0]+"' >";
     }
     else
     {
@@ -48,6 +89,7 @@
          {
              
          }  
+        
     }
     
     if(email.length() > 0 && senha.length() > 0)
@@ -62,7 +104,7 @@
     }
     else
         response.sendRedirect(".");
-
+    
 %>
 <!DOCTYPE html>
 <html>
@@ -74,6 +116,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <title>JSP Page</title>
     </head>
+    
     <body>
         <div class="container-xl p-3 my-3 bg-primary text-white">
             <h1 style="text-align: center;">Horoscopo do dia</h1>
@@ -87,7 +130,7 @@
                 </div>
                 <button type="submit" data-toggle="tooltip" data-placement="right" title="Consultar Horoscopo Diario" class="btn btn-primary">Consultar</button>
         </form>
-            <%=mensagem%>
+            <%=html%>
         </div>      
         <div class="container p-3 my-3 bg-primary text-white">
             <b>Membros do Grupo:</b><a href="Logout" type="button" style="float:right;" class="btn btn-danger">Logout</a>
