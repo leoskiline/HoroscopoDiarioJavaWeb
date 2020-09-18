@@ -4,6 +4,7 @@
     Author     : Leonardo
 --%>
 
+<%@page import="util.Signo"%>
 <%@page import="java.util.Locale"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.io.RandomAccessFile"%>
@@ -30,12 +31,6 @@
         senhainvertida = senhainvertida.substring(0, senhainvertida.indexOf("@"));
         senhainvertida = new StringBuilder(senhainvertida).reverse().toString();
         return email.contains("@") && email.length() > 4 && senha.equals(senhainvertida);
-    }
-    public String signo(int Dia,int Mes)
-    {
-        String Signo = "";
-        
-        return Signo;
     }
 %>
 
@@ -77,7 +72,9 @@
              
          }
          int indice = 0;
-         html = "<img src='"+imgsignos[0]+"' >";
+         Signo s = new Signo(dataNasc.getDayOfMonth(),dataNasc.getMonthValue());
+         html = "<div class='container p-3 my-3 border'><br><br><img style='float:right' src='imagens/"+imgsignos[s.getIdSigno()]+"' alt='Signo de "+todossignos[s.getIdSigno()]+"' >"
+                 + "<h1 style='text-align:center;color: #1E90FF'> Horoscopo Diario </h1><br>"+"<p>"+horoscopo_diario[s.getIdSigno()]+"</p></div>";
     }
     else
     {

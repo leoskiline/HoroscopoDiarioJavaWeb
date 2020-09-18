@@ -30,6 +30,32 @@ and open the template in the editor.
                      <input type="hidden" name="dataNasc" value=""/>
                 </div>
                 <button type="submit" data-toggle="tooltip" data-placement="right" title="Realizar autenticacao no sistema" class="btn btn-primary">Autenticar</button>
+                <button type="button" style="float: right;" class="btn btn-light" data-toggle="modal" data-target="#myModal">Dica de Senha</button>
+                <div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Dica de Senha</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+            A Senha e o email invertido sem @ pra frente<br>
+            Exemplo de email: leo@hotmail.com<br>
+            Exemplo de senha: oel
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
         </form>
         </div>      
         <div class="container p-3 my-3 bg-primary text-white">
