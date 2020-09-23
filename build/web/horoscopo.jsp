@@ -22,6 +22,7 @@
     String todossignos[];
     String imgsignos[];
     String horoscopo_diario[];
+    HttpSession sessao;
     Usuario usuario;
     Locale l = new Locale("pt","BR");
     public boolean validarEmail(String email,String senha)
@@ -47,12 +48,9 @@
             todossignos = new String[12];
             imgsignos = new String[12];
             horoscopo_diario = new String[12];
-            request.getServletContext().getRealPath("");
             RandomAccessFile arq = new RandomAccessFile(request.getServletContext().getRealPath("")+"horoscopo.txt","r");
-            ArrayList<String> linhas = new ArrayList();
             String linha = arq.readLine();
-            linhas.add(linha);
-            int i = 0,j=0;
+            int i = 0;
             while(linha != null && i < 12)
             {
                 signoslinha = linha.split("\n");
@@ -61,20 +59,19 @@
                 imgsignos[i] = signosquebrado[1];
                 horoscopo_diario[i] = signosquebrado[2];
                 linha = arq.readLine();
-                linhas.add(linha);
                 i++;
             }
-            int k = 0;
             
             arq.close();
          }catch(Exception e)
          {
              
          }
-         int indice = 0;
          Signo s = new Signo(dataNasc.getDayOfMonth(),dataNasc.getMonthValue());
-         html = "<div class='container p-3 my-3 border'><br><br><img style='float:right' src='imagens/"+imgsignos[s.getIdSigno()]+"' alt='Signo de "+todossignos[s.getIdSigno()]+"' >"
-                 + "<h1 style='text-align:center;color: #1E90FF'> Horoscopo Diario </h1><br>"+"<p>"+horoscopo_diario[s.getIdSigno()]+"</p></div>";
+         if(sessao.getAttribute("usuario") != null)
+              html = "<div class='container p-3 my-3 border'><br><br><img style='float:right' src='imagens/"+imgsignos[s.getIdSigno()]+"' alt='Signo de "+todossignos[s.getIdSigno()]+"' >"
+                     + "<h1 style='text-align:center;color: #1E90FF'> Horoscopo Diario </h1><br>"+"<p>"+horoscopo_diario[s.getIdSigno()]+"</p></div>";   
+         
     }
     else
     {
@@ -94,7 +91,7 @@
     {
             if(validarEmail(email,senha))
             {
-              HttpSession sessao = request.getSession(true);
+              sessao = request.getSession(true);
               sessao.setAttribute("usuario", usuario);
             }
             else
@@ -134,6 +131,10 @@
             <b>Membros do Grupo:</b><a href="Logout" type="button" style="float:right;" class="btn btn-danger">Logout</a>
             <br>
             Nome: Leonardo Custodio dos Santos RA: 0261810790
+            <br>
+            Nome: Pedro Henrique Dias Macena RA: 0261810804
+            <br>
+            Nome: Pedro Henrique Oliveira Belato RA: 0261821091
         </div>
         
     </body>
